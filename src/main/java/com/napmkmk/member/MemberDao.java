@@ -11,7 +11,11 @@ public class MemberDao {
 	static String user = "root";
 	static String pass = "12345";
 	
-	public int insertMember(String id,  String pw,String name, String email) {
+	public int insertMember(MemberDto dto) {
+		String id = dto.getId();
+		String pw = dto.getPw();
+		String name = dto.getUsername();
+		String email = dto.getEmail();
 		
 		String sql="INSERT INTO members( id, pw,username, email) VALUE('"+id+"','"+pw+"','"+name+"','"+email+"')";
 		

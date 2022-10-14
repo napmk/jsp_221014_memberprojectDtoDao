@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@page import="com.napmkmk.member.MemberDao" %>
- 
+  <%@page import="com.napmkmk.member.MemberDto" %>
  <%request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
@@ -17,9 +17,19 @@
 	String pw = request.getParameter("pw");
 	String name = request.getParameter("name");
 	String email = request.getParameter("email");
-	MemberDao dao = new MemberDao();
-	int joinCheck = dao.insertMember(id,pw,name,email);
 	
+	MemberDto dto = new MemberDto();
+	dto.setId(id);
+	dto.setPw(pw);
+	dto.setUsername(name);
+	dto.setEmail(email);
+	
+	
+	
+	MemberDao dao = new MemberDao();
+	
+	int joinCheck = dao.insertMember(dto);
+	//int joinCheck = dao.insertMember(id, pw,name, email);
 	if(joinCheck == 1){
 		out.println("회원가입 성공! 축하합니다.");
 	}else {
